@@ -1,5 +1,14 @@
 # Changelog
 
+## Unreleased - CodexPro Cloud
+
+- Added a single-container cloud runtime with persistent `/data` and `/workspace` volumes.
+- Added a one-time HTTPS setup wizard that provisions a Cloudflare named Tunnel and DNS record.
+- Added an exact `/mcp` public gateway on port `8788` with a mandatory Cloudflare `404` fallback.
+- Added a loopback-only admin page for runtime modes, status, and MCP token rotation.
+- Added non-root, read-only Docker and Compose defaults plus cloud security tests and CI.
+- Retained upstream CodexPro core at commit `9b2a0ba7e4ccddced1ab88acb6e0d5092648a2b6` as the initial baseline.
+
 ## Unreleased
 
 - Added saved additional projects with `codexpro settings set --project <path>`, session-local workspace selection through the existing `open_workspace` tool, and `--clear-projects` for removing the saved allowlist.

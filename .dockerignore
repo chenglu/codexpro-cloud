@@ -1,0 +1,14 @@
+.git
+.github
+node_modules
+dist
+.env
+.env.*
+*.log
+*.tgz
+.ai-bridge
+.hallmark
+.playwright-cli
+.worktrees
+output
+docs/research
