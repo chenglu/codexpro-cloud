@@ -49,3 +49,11 @@ The current MVP does not mutate an installed Tunnel hostname from the admin page
 ## How do I reset everything?
 
 Back up anything needed, then remove the data volume and recreate the container. This deletes the local connector credential but does not delete the Cloudflare Tunnel or DNS record; remove those in Cloudflare separately.
+
+## How do I import an attachment?
+
+In Edit or Develop mode, ask ChatGPT to import the attachment to a path below `/workspace`, such as `docs/evidence/screenshot.png`. The `import_file` tool needs a file object with `download_url` and `file_id` supplied by the client. A bare file ID is insufficient. The default import limit is 5,000,000 bytes; overwriting an existing file requires `overwrite: true`.
+
+## How do I update the cloud instance?
+
+Run `docker compose pull` followed by `docker compose up -d`. Both named volumes preserve the workspace and configuration. The image includes the matching core version, so a separate npm installation inside the container is unnecessary.

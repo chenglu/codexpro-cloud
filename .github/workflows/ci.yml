@@ -90,6 +90,19 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
+      - name: Verify attachment imports across volumes
+        shell: bash
+        run: |
+          docker run --rm \
+            --read-only \
+            --tmpfs /tmp:size=256m,mode=1777 \
+            --cap-drop ALL \
+            --security-opt no-new-privileges:true \
+            -e CODEXPRO_TEST_WORKSPACE_ROOT=/workspace \
+            -e CODEXPRO_TEST_REQUIRE_SEPARATE_FILESYSTEMS=1 \
+            -v "$PWD/scripts/cloud-import-smoke.mjs:/app/scripts/cloud-import-smoke.mjs:ro" \
+            --entrypoint node codexpro-cloud:ci scripts/cloud-import-smoke.mjs
+
       - name: Verify unconfigured container
         shell: bash
         run: |

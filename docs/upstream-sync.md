@@ -5,7 +5,7 @@ CodexPro Cloud tracks [rebel0789/codexpro](https://github.com/rebel0789/codexpro
 ## Check Status
 
 ```bash
-git fetch origin upstream --prune
+git fetch --multiple --prune origin upstream
 git rev-list --left-right --count main...upstream/main
 git log --oneline main..upstream/main
 ```
@@ -23,6 +23,12 @@ git merge --no-ff upstream/main
 ```
 
 Do not rebase published cloud history onto upstream.
+
+## Current Import
+
+The 2026-09-15 sync imports upstream `587f7fd` (CodexPro `0.30.0`). Cloud deployment docs retain this distribution's Docker setup and port mapping, with attachment import usage added in both languages.
+
+One core compatibility patch is carried in `src/importOps.ts`: an `EXDEV` fallback stages attachment overwrites beside the destination before an atomic rename. Docker keeps `/tmp` and `/workspace` on separate filesystems. Keep the cross-volume CI regression when merging future upstream changes, and remove the patch only once upstream handles this case. Transitive dependencies `fast-uri`, `hono`, and `qs` also have newer compatible security fixes in our lockfile.
 
 ## Conflict Policy
 

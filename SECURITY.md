@@ -64,6 +64,10 @@ This token design is for one user and one instance. A shared or multi-user servi
 
 CodexPro path guards reduce accidental access outside `/workspace`, but CodexPro is not an OS sandbox. `safe` Bash can run package scripts, and package scripts can execute arbitrary repository code. Never use `develop` mode for an untrusted repository without an additional sandbox.
 
+## Attachment Import
+
+In `edit` and `develop` modes, `import_file` accepts a client-supplied attachment object containing `download_url` and `file_id`. The core checks HTTPS host allowlists, redirect targets and resolved addresses, enforces a streaming size limit (5,000,000 bytes by default), and supports expected SHA-256 verification. Overwrite is disabled by default. `readonly` mode does not advertise this tool.
+
 ## Container Controls
 
 The example Compose deployment:

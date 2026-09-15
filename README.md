@@ -8,6 +8,10 @@ This is not a model proxy, ChatGPT account pool, quota-sharing service, or hoste
 
 > Project status: single-user MVP. Use one container per user or trust boundary. Multi-user hosting requires OAuth and stronger tenant isolation.
 
+## Included Core
+
+This distribution includes CodexPro `0.30.0`, synchronized through upstream commit `587f7fd`. It adds ChatGPT attachment import with `import_file`, discovery of skills installed as directory symlinks, and a configurable command timeout ceiling of 10 minutes (30 seconds per command by default). Attachment import is available in Edit and Develop modes when the MCP client supplies a supported file reference.
+
 ## Architecture
 
 ```text

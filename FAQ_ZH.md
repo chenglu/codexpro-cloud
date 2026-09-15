@@ -49,3 +49,11 @@
 ## 如何彻底重置？
 
 备份需要的数据后，删除 data volume 并重建容器。这样只会删除本地凭据，不会自动删除 Cloudflare Tunnel 和 DNS，需要去 Cloudflare 后台单独清理。
+
+## 怎么导入 ChatGPT 附件？
+
+在编辑或开发模式下，让 ChatGPT 将附件导入 `/workspace` 下的路径，例如 `docs/evidence/screenshot.png`。`import_file` 需要客户端提供包含 `download_url` 和 `file_id` 的文件对象，仅有文件 ID 无法下载。默认附件上限为 5,000,000 字节，覆盖已有文件需要显式设置 `overwrite: true`。
+
+## 怎么更新 Cloud 实例？
+
+依次运行 `docker compose pull` 和 `docker compose up -d`。两个持久化卷会保留工作区和配置；镜像已包含对应核心版本，无需在容器内另装 npm 包。
