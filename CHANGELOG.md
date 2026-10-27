@@ -2,6 +2,8 @@
 
 ## Unreleased - CodexPro Cloud
 
+- Synchronized upstream CodexPro 0.30.3 through commit `113472c`, including handoff recovery, MCP workspace continuity, request diagnostics, and dependency fixes.
+
 - Synchronized upstream CodexPro 0.30.0 through commit `587f7fd`, including attachment imports, symlinked skills, and configurable Bash timeout ceilings.
 - Fixed attachment overwrites across separate Docker temporary/workspace volumes and added a container regression check.
 - Updated `fast-uri`, `hono`, and `qs` to compatible patched versions after reviewing the current dependency audit.
@@ -12,7 +14,36 @@
 - Added non-root, read-only Docker and Compose defaults plus cloud security tests and CI.
 - Retained upstream CodexPro core at commit `9b2a0ba7e4ccddced1ab88acb6e0d5092648a2b6` as the initial baseline.
 
-## Unreleased
+
+## 0.30.3 (2026-10-01)
+
+- Fixed Windows handoff runs that could remain `running` after an npm `.cmd` executor exited by settling from the child exit when inherited output handles never close, terminating the full process tree on timeout, and recording the completion source for diagnostics.
+- Updated patched transitive dependencies for brace-expansion denial-of-service and IP-address classification vulnerabilities; the release audit reports zero known vulnerabilities.
+- Reduced Windows CI flakiness by allowing the analysis CLI smoke test enough startup time on slower hosted runners.
+
+## 0.30.2 (2026-09-20)
+
+- Read the runtime and MCP server version from package metadata so release entrypoints cannot drift from `package.json`.
+- Added a clean consumer-install smoke test for the packed npm tarball and all three public command entrypoints.
+- Expanded CI to Node.js 20 and 24 on Linux and Windows, including package-install and high-severity dependency-audit gates.
+- Documented built-in repository intelligence, product focus, and a prioritized public roadmap.
+
+## 0.30.1 (2026-09-20)
+
+- Hardened local handoff receipts: interruptions are recorded as non-terminal `interrupting` and terminal `interrupted` states only after child exit; stale in-flight receipts become `orphaned` only when recorded processes are gone and require reconciliation.
+- Blocked standard Git/GitHub remote mutation paths inside local handoff executors by default; `--allow-remote-mutations` is an explicit opt-in for authorized workflows.
+- Added explicit Windows Bash runtime selection: `auto` prefers Git for Windows and never silently falls back to WSL; WSL requires `CODEXPRO_BASH_RUNTIME=wsl`.
+- Documented an explicit maintainer security contact and advisory-reporting route for repositories where GitHub private vulnerability reporting is unavailable.
+- Search now passes the requested result limit through to ripgrep, preserving truthful truncation reporting for files with many matches.
+- Preserved the connector token for browser profile saves after removing it from history, and hardened the admin page against cross-origin writes.
+- Preserved explicitly opened workspace IDs across HTTP MCP sessions while keeping implicit workspace selection session-local.
+- Stats-only git diffs now use Git numstat directly instead of buffering the complete unified diff.
+- apply_patch now rejects Git's exit-zero skipped-patch result instead of reporting a false successful change.
+- Self-test Pro context checks now run independently of the write probe, and the write probe restores or removes its diagnostic file afterward.
+- Bash timeout schemas now accept the full supported 15-minute ceiling while runtime configuration remains authoritative.
+- Server config and self-test now report whether search is using ripgrep or the bounded Node fallback.
+- Path-scoped Git inspection now uses the nearest allowed repository root, and Windows command output recognizes UTF-16 streams.
+- HTTP health diagnostics now expose bounded request-arrival, dispatch, completion, authentication-failure, and correlation-ID metadata without recording request contents or tokens.
 
 ## 0.30.0 (2026-08-08)
 

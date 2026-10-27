@@ -10,7 +10,7 @@ This is not a model proxy, ChatGPT account pool, quota-sharing service, or hoste
 
 ## Included Core
 
-This distribution includes CodexPro `0.30.0`, synchronized through upstream commit `587f7fd`. It adds ChatGPT attachment import with `import_file`, discovery of skills installed as directory symlinks, and a configurable command timeout ceiling of 10 minutes (30 seconds per command by default). Attachment import is available in Edit and Develop modes when the MCP client supplies a supported file reference.
+This distribution includes CodexPro `0.30.3`, synchronized through upstream commit `113472c`. It includes handoff recovery, workspace continuity across MCP sessions, Windows process cleanup, and sanitized request diagnostics. ChatGPT attachment import with `import_file` remains available in Edit and Develop modes when the MCP client supplies a supported file reference. Commands default to 30 seconds with a configurable ceiling of 10 minutes.
 
 ## Architecture
 

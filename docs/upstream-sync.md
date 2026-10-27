@@ -26,9 +26,9 @@ Do not rebase published cloud history onto upstream.
 
 ## Current Import
 
-The 2026-09-15 sync imports upstream `587f7fd` (CodexPro `0.30.0`). Cloud deployment docs retain this distribution's Docker setup and port mapping, with attachment import usage added in both languages.
+The 2026-10-26 sync imports upstream `113472c` (CodexPro `0.30.3`). It includes handoff recovery and execution logging, workspace continuity, Windows lifecycle fixes, and sanitized HTTP diagnostics. Cloud deployment docs retain this distribution's Docker setup and port mapping. CI covers Node 20 and 24 on Linux and Windows, packed-package installation, and the Cloud runtime.
 
-One core compatibility patch is carried in `src/importOps.ts`: an `EXDEV` fallback stages attachment overwrites beside the destination before an atomic rename. Docker keeps `/tmp` and `/workspace` on separate filesystems. Keep the cross-volume CI regression when merging future upstream changes, and remove the patch only once upstream handles this case. Transitive dependencies `fast-uri`, `hono`, and `qs` also have newer compatible security fixes in our lockfile.
+One core compatibility patch is carried in `src/importOps.ts`: an `EXDEV` fallback stages attachment overwrites beside the destination before an atomic rename. Docker keeps `/tmp` and `/workspace` on separate filesystems. Keep the cross-volume CI regression when merging future upstream changes, and remove the patch only once upstream handles this case. The MCP SDK and vulnerable HTTP dependencies have compatible security updates in our lockfile. Zod moves to the patched 4.x release, with an explicit string key schema for action arguments; the complete core and Cloud suites verify this compatibility change.
 
 ## Conflict Policy
 
